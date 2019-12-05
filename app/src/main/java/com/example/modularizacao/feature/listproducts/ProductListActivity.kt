@@ -1,28 +1,31 @@
-package com.example.modularizacao
+package com.example.modularizacao.feature.listproducts
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.modularizacao.databinding.ActivityMainBinding
+import com.example.modularizacao.R
+import com.example.modularizacao.databinding.ActivityProductListBinding
 import com.example.modularizacao.extension.visible
 import com.example.modularizacao.viewmodel.ViewState
 import org.koin.android.ext.android.inject
 
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity() {
+class ProductListActivity : AppCompatActivity() {
 
-    private val viewModel: MainViewModel by viewModel()
-    private val mainListAdapter: MainListAdapter by inject()
+    private val viewModel: ProductListViewModel by viewModel()
+    private val productListAdapter: ProductListAdapter by inject()
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityProductListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this,
+            R.layout.activity_product_list
+        )
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
@@ -36,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.state.observe(this, Observer { state ->
             when (state) {
                 is ViewState.Success -> {
-                    mainListAdapter.products = state.data
+                    productListAdapter.products = state.data
                     setVisibilities(showList = true)
                 }
                 is ViewState.Loading -> {
@@ -53,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() = with(binding.recyclerView) {
         layoutManager = LinearLayoutManager(context)
-        adapter = mainListAdapter
+        adapter = productListAdapter
     }
 
     private fun setVisibilities(

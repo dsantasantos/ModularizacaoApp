@@ -1,4 +1,4 @@
-package com.example.modularizacao
+package com.example.modularizacao.feature.listproducts
 
 import androidx.lifecycle.MutableLiveData
 import com.example.domain.entity.Product
@@ -7,10 +7,9 @@ import com.example.modularizacao.viewmodel.BaseViewModel
 import com.example.modularizacao.viewmodel.StateMachineSingle
 import com.example.modularizacao.viewmodel.ViewState
 import io.reactivex.Scheduler
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.plusAssign
 
-class MainViewModel(
+class ProductListViewModel(
     val useCase: GetProductsUseCase,
     val uiScheduler: Scheduler
 ): BaseViewModel() {

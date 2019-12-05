@@ -3,7 +3,7 @@ package dependencies
 object Versions {
     val kotlin = "1.3.41"
     const val kotlinVersion = "1.3.31"
-    const val androidGradleVersion = "3.5.2"
+    const val androidGradleVersion = "3.4.1"
 
     //support libs
     const val appcompatVersion = "1.1.0"
@@ -20,8 +20,6 @@ object Versions {
     const val compileSDK = 28
 
     const val buildTools = "3.4.1"
-
-    const val appCompactVersion = "1.0.2"
 
     const val AndroidArchVersion = "1.1.1"
     const val databindingVersion = "3.1.4"
@@ -51,6 +49,8 @@ object Versions {
     const val picassoVersion = "2.71828"
 
     const val okHttpVersion = "4.2.1"
+
+    const val playCoreVersion = "1.6.4"
 
 }
 
@@ -120,6 +120,10 @@ object Deps {
 
     object Picasso {
         val picasso = "com.squareup.picasso:picasso:${Versions.picassoVersion}"
+    }
+
+    object Play {
+        val core = "com.google.android.play:core:${Versions.playCoreVersion}"
     }
 
     object TestLibs {

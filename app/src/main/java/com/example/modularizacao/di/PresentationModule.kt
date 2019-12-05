@@ -1,7 +1,7 @@
 package com.example.modularizacao.di
 
-import com.example.modularizacao.MainListAdapter
-import com.example.modularizacao.MainViewModel
+import com.example.modularizacao.feature.listproducts.ProductListAdapter
+import com.example.modularizacao.feature.listproducts.ProductListViewModel
 import com.squareup.picasso.Picasso
 import io.reactivex.android.schedulers.AndroidSchedulers
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -12,11 +12,12 @@ val presentationModule = module {
 
     single { Picasso.get() }
 
-    factory { MainListAdapter(picasso = get()) }
+    factory { ProductListAdapter(picasso = get()) }
 
-    viewModel { MainViewModel(
-        useCase = get(),
-        uiScheduler = AndroidSchedulers.mainThread()
-    )
+    viewModel {
+        ProductListViewModel(
+            useCase = get(),
+            uiScheduler = AndroidSchedulers.mainThread()
+        )
     }
 }
