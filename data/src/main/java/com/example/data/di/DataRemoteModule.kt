@@ -19,7 +19,9 @@ val remoteDataSourceModule = module {
         )
     }
 
-    factory<ProductRemoteDataSource> { ProductRemoteDataSourceImpl(productAPI = get()) }
+    factory<ProductRemoteDataSource> {
+        ProductRemoteDataSourceImpl(productAPI = get())
+    }
 }
 
 fun providesOkHttpClient(): OkHttpClient {
@@ -30,7 +32,10 @@ fun providesOkHttpClient(): OkHttpClient {
         .build()
 }
 
-inline fun <reified T> createWebService(okHttpClient: OkHttpClient, url: String): T {
+inline fun <reified T> createWebService(
+    okHttpClient: OkHttpClient,
+    url: String
+): T {
     return Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
