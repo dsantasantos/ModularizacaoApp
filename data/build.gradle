@@ -1,15 +1,15 @@
+import dependencies.Deps
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    def globalConfiguration = rootProject.extensions.getByName("ext")
-
-    compileSdkVersion globalConfiguration["compileSDK"]
+    compileSdkVersion Deps.Android.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion globalConfiguration["minSDK"]
-        targetSdkVersion globalConfiguration["targetSDK"]
+        minSdkVersion Deps.Android.minSdkVersion
+        targetSdkVersion Deps.Android.targetSdkVersion
     }
 
     compileOptions {
@@ -23,19 +23,19 @@ dependencies {
 
     implementation project(":domain")
 
-    implementation dependencies.kotlin
-    implementation dependencies.rxJava
+    implementation Deps.Kotlin.kotlin_std
+    implementation Deps.Rx.rxJava
 
-    implementation dependencies.retrofit
-    implementation dependencies.retrofitRxAdapter
-    implementation dependencies.retrofitGsonConverter
-    implementation dependencies.gson
+    implementation Deps.Retrofit.retrofit
+    implementation Deps.Retrofit.retrofitRxAdapter
+    implementation Deps.Retrofit.retrofitGsonConverter
+    implementation Deps.Retrofit.gson
+    implementation Deps.Retrofit.okhttp3
 
-    implementation dependencies.room
-    implementation dependencies.roomRxJava
-    kapt dependencies.roomCompiler
+    implementation Deps.Room.room
+    implementation Deps.Room.roomRxJava
+    kapt Deps.Room.roomCompiler
 
-    implementation 'com.squareup.okhttp3:okhttp:4.2.1'
 
 
     implementation dependencies.koin

@@ -1,8 +1,9 @@
+import dependencies.Deps
+
 buildscript {
 
     apply from: 'dependencies.gradle'
 
-    ext.kotlin_version = '1.3.41'
     repositories {
         google()
         jcenter()
@@ -10,8 +11,8 @@ buildscript {
     }
 
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-        classpath "com.android.tools.build:gradle:$buildTools"
+        classpath Deps.BuildPlugins.kotlinGradlePlugin
+        classpath Deps.BuildPlugins.androidGradle
     }
 }
 

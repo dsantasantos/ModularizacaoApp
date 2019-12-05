@@ -1,3 +1,5 @@
+import dependencies.Deps
+
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
@@ -6,14 +8,14 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.0"
+    compileSdkVersion Deps.Android.compileSdkVersion
+    buildToolsVersion Deps.Android.buildToolsVersion
     defaultConfig {
-        applicationId "com.example.modularizacao"
-        minSdkVersion 20
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        applicationId Deps.Android.applicationId
+        minSdkVersion Deps.Android.minSdkVersion
+        targetSdkVersion Deps.Android.targetSdkVersion
+        versionCode Deps.Android.versionCode
+        versionName Deps.Android.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -33,37 +35,33 @@ dependencies {
     implementation project(path: ':domain')
     implementation project(path: ':data')
 
-    def dependencies = rootProject.ext.dependencies
-    def testDependencies = rootProject.ext.testDependecies
+    implementation Deps.SupportLibs.appcompat
+    implementation Deps.SupportLibs.constraint_layout
 
-    implementation dependencies.appCompact
-    implementation dependencies.constraintlayout
+    testImplementation Deps.TestLibs.junit
+    androidTestImplementation Deps.TestLibs.runner
+    androidTestImplementation Deps.TestLibs.espresso
 
-    testImplementation testDependencies.junit
-    androidTestImplementation testDependencies.runner
-    androidTestImplementation testDependencies.espresso
+    implementation Deps.SupportLibs.cardView
+    implementation Deps.SupportLibs.recyclerView
 
-    implementation dependencies.cardView
-    implementation dependencies.recyclerView
+    implementation Deps.Kotlin.kotlin_std
 
-    implementation dependencies.kotlin
+    implementation Deps.SupportLibs.core_ktx
 
-    implementation dependencies.ktx
+    implementation Deps.AACLibs.viewModel
+    implementation Deps.AACLibs.lifeCycle
 
-    implementation dependencies.viewModel
+    implementation Deps.Koin.koin
+    implementation Deps.Koin.koinViewModel
 
-    implementation dependencies.lifeCycle
+    implementation Deps.Rx.rxJava
+    implementation Deps.Rx.rxKotlin
+    implementation Deps.Rx.rxAndroid
 
-    implementation dependencies.koin
-    implementation dependencies.koinViewModel
-
-    implementation dependencies.rxJava
-    implementation dependencies.rxKotlin
-    implementation dependencies.rxAndroid
-
-    implementation dependencies.picasso
+    implementation Deps.Picasso.picasso
 
 
-    kapt dependencies.dataBinding
+    kapt Deps.SupportLibs.dataBinding
 
 }

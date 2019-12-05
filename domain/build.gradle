@@ -1,13 +1,13 @@
+import dependencies.Deps
+
 apply plugin: 'java-library'
 apply plugin: 'kotlin'
 
 dependencies {
 
-    def dependencies = rootProject.ext.dependencies
-
-    implementation dependencies.kotlin
-    implementation dependencies.rxJava
-    implementation dependencies.koin
+    implementation Deps.Kotlin.kotlin_std
+    implementation Deps.Rx.rxJava
+    implementation Deps.Koin.koin
 
 }
 
