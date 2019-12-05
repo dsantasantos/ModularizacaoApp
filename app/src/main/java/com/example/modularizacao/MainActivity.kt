@@ -31,8 +31,7 @@ class MainActivity : AppCompatActivity() {
                 is ViewState.Loading -> {
                     Log.i("TAG", "Loading")
                 }
-                is ViewState.Failed -> {
-                    Log.i("TAG", "Failed")
+                is ViewState.Failed -> { Log.i("TAG", "Failed")
                 }
             }
         })
